@@ -4,8 +4,17 @@ const authorText = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
+const toggleButton = document.getElementById('toggle-button'); // Light Dark Mode Button
 
 let apiQuotes = [];
+let currentMode = false; // false -> light mode || true -> dark mode
+
+// Light Dark Mode Function
+function toggleMode() {
+    currentMode = !currentMode;
+    isDark = currentMode;
+    isDark ? document.documentElement.setAttribute('data-theme', 'dark') : document.documentElement.setAttribute('data-theme', 'light');
+}
 
 // Show Loading
 function showLoader() {
@@ -63,6 +72,7 @@ function tweetQuote() {
 // Even Listeners
 newQuoteBtn.addEventListener('click', newQuote);
 twitterBtn.addEventListener('click', tweetQuote);
+toggleButton.addEventListener('click', toggleMode);
 
 // On Load
 getQuotes();
